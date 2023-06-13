@@ -2,34 +2,42 @@ import logo from './logo.svg';
 import './App.css';
 import Img from './images/img';
 import styles from './styles/app.css'
+import { useEffect, useState } from 'react';
 
 function App() {
 
-  const data = [
-    {name: 'yaman', grade: 100},
-    {name: 'ali', grade: 80},
-    {name: 'mohamed', grade: 70},
-    {name: 'ahmed', grade: 60},
-    {name: 'khaled', grade: 50},
-    {name: 'mohnd', grade: 100},
-    {name: 'amer', grade: 80},
-
-  ]
-
-  const Row = ({name , grade}) => {
+  const [data , setData] = useState([])
+  const Row = ({name , grade , index}) => {
     return (
       <tr className='rowInTable'>
         <td>{name}</td>
         <td>{grade}</td>
+        <td>{index}</td>
       </tr>
     )
   }
 
   const renderRows = () => {
-    return data.map((item) => {
-      return <Row name={item.name} grade={item.grade}/>
+    return data.map((item , index) => {
+      return <Row name={item.name} grade={item.grade} index={index + 1 } />
     })
   }
+
+  const getGrades = ()=> {
+    const url = 'https://trivia-zee4.onrender.com/getHigh20'; 
+    fetch(url)
+    .then(response => response.json())
+    .then(resJson =>{
+      console.log("data: ", resJson);
+      setData(resJson)
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+
+  useEffect(()=> {
+    getGrades();
+  }, [])
 
   return (
     <div className="App">
@@ -51,6 +59,7 @@ function App() {
       </table>
 
       </div>
+      
     </div>
   );
 }

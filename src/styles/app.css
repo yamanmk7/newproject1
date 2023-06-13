@@ -10,9 +10,8 @@
 }
 
 .rowInTable{
-    /* border: 1px solid black; */
-    /* border-bottom: 1px solid green; */
+   
     background-color: lightblue;
-    /* border-collapse: collapse;  */
+    
     margin-bottom: 50px;
 }
