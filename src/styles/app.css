@@ -1,0 +1,18 @@
+.table{
+   color: black;
+    font-size: 50px;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    width: 70%;
+    align-self: 'center';
+    margin: 0 auto;
+}
+
+.rowInTable{
+    /* border: 1px solid black; */
+    /* border-bottom: 1px solid green; */
+    background-color: lightblue;
+    /* border-collapse: collapse;  */
+    margin-bottom: 50px;
+}
