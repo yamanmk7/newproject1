@@ -11,7 +11,7 @@ function App() {
     return (
       <tr className='rowInTable'>
         <td>{name}</td>
-        <td>{grade}</td>
+        <td>{grade + "/10"}</td>
         <td>{index}</td>
       </tr>
     )
@@ -19,17 +19,23 @@ function App() {
 
   const renderRows = () => {
     return data.map((item , index) => {
-      return <Row name={item.name} grade={item.grade} index={index + 1 } />
+      return <Row name={item.username} grade={item.userScore} index={index + 1 } />
     })
   }
 
   const getGrades = ()=> {
     const url = 'https://trivia-zee4.onrender.com/getHigh20'; 
-    fetch(url)
+    fetch(url , {
+      headers:{
+        "Access-Control-Allow-Origin" :'no-cors' , 
+        'crose-origin' : 'no-cors',
+        "Content-Type": "application/json"
+      }
+    })
     .then(response => response.json())
     .then(resJson =>{
       console.log("data: ", resJson);
-      setData(resJson)
+      setData(resJson?.finalscores)
     }).catch(err => {
       console.log(err);
     });
